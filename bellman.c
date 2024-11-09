@@ -18,6 +18,20 @@ void printMatrix(int matrix[MAX][MAX], int V) {
     }
 }
 
+void printPath(int start, int end, int predecessor[]) {
+    if (end == -1) {
+        printf("No path from %d\n", start);
+        return;
+    }
+
+    if (end == start) {
+        printf("%d ", start);
+        return;
+    }
+    printPath(start, predecessor[end], predecessor);
+    printf("%d ", end);
+}
+
 void bellmanFord(int V, int matrix[MAX][MAX], int start) {
     int distance[MAX];
     int predecessor[MAX];
@@ -56,9 +70,11 @@ void bellmanFord(int V, int matrix[MAX][MAX], int start) {
         printf("Number of negative cycles detected: %d\n", cycleCount);
     } else {
         printf("No negative cycles detected.\n");
-        printf("Vertex\tDistance from Source\n");
+        printf("Vertex    Distance from Source    Path\n");
         for (int i = 0; i < V; i++) {
-            printf("%d\t\t%d\n", i, distance[i] == INF ? -1 : distance[i]);
+            printf("%d\t\t%d\t\t\t", i, distance[i] == INF ? -1 : distance[i]);
+            printPath(start, i, predecessor);
+            printf("\n");
         }
     }
 }
@@ -70,7 +86,7 @@ int main() {
     printf("Enter the number of vertices: ");
     scanf("%d", &V);
 
-    printf("Enter the adjacency matrix (use %d for INF):\n", INF);
+    printf("Enter the adjacency matrix (use 2147483647 for INF):\n");
     for (int i = 0; i < V; i++) {
         for (int j = 0; j < V; j++) {
             scanf("%d", &matrix[i][j]);
@@ -88,6 +104,7 @@ int main() {
 
     return 0;
 }
+
 /*
  rachana@LAPTOP-FPSS0O9R:/mnt/c/Users/racha/Desktop/ccodes/ADSA$ ./bellman
 Enter the number of vertices: 4
