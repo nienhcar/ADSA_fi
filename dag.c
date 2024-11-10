@@ -100,3 +100,21 @@ int main() {
 
     return 0;
 }
+*/
+Enter the number of vertices: 4
+Enter the adjacency matrix (use 2147483647 for INF):
+0 3 2147483647 4
+2147483647 0 -2 2147483647
+2147483647 2147483647 0 2
+2147483647 2147483647 2147483647^@0
+Enter the starting vertex: Adjacency Matrix:
+0 3 INF 4
+INF 0 -2 INF
+INF INF 0 2
+INF INF INF 0
+Vertex  Distance from Source    Path
+0       0                       0
+1       3                       0 -> 1
+2       1                       0 -> 1 -> 2
+3       3                       0 -> 1 -> 2 -> 3
+    */
